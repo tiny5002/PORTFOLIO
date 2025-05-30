@@ -1,184 +1,106 @@
-<!-- <template>
-    <div class="image">
-        <img :src="contact me.gif" alt="gif">
-        <form @submit.prevent="handleSubmit">
-            <label>
-                Name: 
-            <input type="text" v-model="form.name" required />
-            </label>
-            <label>
-                Address:  
-            <input type="text" v-model="form.address" required />
-            </label>
-            <label>
-                Contact No:  
-            <input type="text" v-model="form.contact" required />
-            </label>
-            <label>
-                Email-id:  
-            <input type="text" v-model="form.emailid" required />
-            </label>
-            <button type="submit"> send </button>
-        </form>
-    </div>
-</template>
-
-<script>
-import contact me from '@/assets/contact-me.gif';
-
-export default {
-    data (){
-      return {
-        contact-me.gif;
-        form: {
-          name: '', //Taking the name as input
-          address: '', //Taking the address as input
-          contact: '', //Taking the contact as input
-          emailid: '', //Taking the emailid as input
-        }
-      };
-    },
-    methods: {
-     handleSubmit(){
-        console.log('Form Submitted:',this.form) //Handling the submission of the form
-      }
-    }
-};
-</script>
-
-<style>
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: 0;
-    font-family:Arial, Helvetica, sans-serif;
-}
-
-body{
-    margin: 0;
-    overflow: hidden;
-}
-
-.img{
-    align-items: left;
-    justify-content: space-evenly;
-    border-radius: round;
-    padding: 5px;
-    width: 150px;
-}
-
-.img:hover{
-    box-shadow: black;
-}
-
-
-.glassmorphic-form {
-    background: rgba(255, 255, 255, 0.2); /*Semi-transparent white background*/
-    backdrop-filter: blur(10px); /*Adds a blue effect to the background*/
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /*Adds a subtle shadow */
-    border-radius: 10px; /*Rounded Corners*/
-    padding: 20px; /* Add some padding for spacing */
-    border: 1px solid rgba(255, 255, 255, 0.18);  /*Adds a subtle border */
-}
-
-.glasssmorphic-form input[type=text],
-.glasssmorphic-form input[type=password],
-.glasssmorphic-form input[type=email] {
-    background: transparent; /* Makes input fields transparent */
-    border: none; /*Remove borders from input fields*/
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4); /*Add a subtle bottom border*/
-    padding: 10px; /*Rounded corner*/
-    outline: none;
-    color: black;
-}
-
-.glasssmorphic-form input[type=text]:focus,
-.glasssmorphic-form input[type=password]:focus,
-.glasssmorphic-form input[type=email]:focus {
-    border-bottom: 1px solid white;
-}
-
-.glassmorphic-form button {
-    background: rgba(255, 255, 255, 0.2); /*Makes the background white*/
-    color: white; /*Makes the background white*/
-    padding: 10px 20px; /*Rounded corners*/
-    border: none; 
-    border-radius: 5px; 
-    cursor: pointer; /*Adding a background to*/
-    outline: none; /*Adding no outline to the border*/
-    backdrop-filter: blur(5px); /*Adds a glassy affect*/
-    padding: 0;
-}
-
-.glassmorphic-form button:hover{
-    opacity: 0.8px;
-}
-</style> -->
-
 <template>
   <v-app id="Contactform">
-    <v-form
-      ref="form"
-      v-model="valid"
-      lazy-validation
-    >
-      <v-text-field
-        v-model="name"
-        :counter="10"
-        :rules="nameRules"
-        label="Name"
-        autocomplete="name"
-        required
-      ></v-text-field>
+    <v-container class="pa-5">
+      <v-row>
+        <v-col 
+          cols="12" 
+          md="6"
+        >
+          <v-img
+            :src="gifSrc"
+            alt="Contact me gif"
+            class="gif-img mb-5"
+            max-height="300"
+            contain
+          />
+        </v-col>
 
-      <v-text-field
-        v-model="email"
-        :rules="emailRules"
-        label="E-mail"
-        autocomplete="email"
-        required
-      ></v-text-field>
+        <v-col 
+          cols="12" 
+          md="6"
+        >
+          <v-form
+            ref="form"
+            v-model="valid"
+            lazy-validation
+          >
+            <v-text-field
+              v-model="name"
+              :counter="10"
+              :rules="nameRules"
+              label="Name"
+              autocomplete="name"
+              required
+            />
 
-      <v-select
-        v-model="select"
-        :items="items"
-        :rules="[v => !!v || 'Item is required']"
-        label="Item"
-        required
-      ></v-select>
+            <v-text-field
+              v-model="email"
+              :rules="emailRules"
+              label="E-mail"
+              autocomplete="email"
+              required
+            />
 
-      <v-checkbox
-        v-model="checkbox"
-        :rules="[v => !!v || 'You must agree to continue!']"
-        label="Do you agree?"
-        required
-      ></v-checkbox>
+            <v-select
+              v-model="select"
+              :items="items"
+              :rules="[v => !!v || 'Item is required']"
+              label="Item"
+              required
+            />
 
-      <v-btn
-        :disabled="!valid"
-        color="success"
-        class="mr-4"
-        @click="validate"
-      >
-        Validate
-      </v-btn>
+            <v-checkbox
+              v-model="checkbox"
+              :rules="[v => !!v || 'You must agree to continue!']"
+              label="Do you agree?"
+              required
+            />
 
-      <v-btn
-        color="error"
-        class="mr-4"
-        @click="reset"
-      >
-        Reset Form
-      </v-btn>
+            <v-btn
+              :disabled="!valid"
+              color="success"
+              class="mr-4"
+              @click="validate"
+            >
+              Submit
+            </v-btn>
 
-      <v-btn
-        color="warning"
-        @click="resetValidation"
-      >
-        Reset Validation
-      </v-btn>
-    </v-form>
-    <v-snackbar v-model="snackbar" :timeout="3000">Form submitted successfully!</v-snackbar>
+            <v-btn
+              color="error"
+              class="mr-4"
+              @click="reset"
+            >
+              Reset
+            </v-btn>
+
+            <button 
+              type="button" 
+              @click="resetValidation"
+            >
+              Reset Validation
+            </button>
+          </v-form>
+        </v-col>
+      </v-row>
+
+      <v-snackbar v-model="snackbar">
+        Form submitted successfully!
+      </v-snackbar>
+
+      <v-row class="mt-10">
+        <v-col cols="12">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.050957417908!2d77.49926877431979!3d13.0324270135433!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3d00043066f3%3A0x30e8e98d8314aad2!2sDIVYA%20PARADISE%20GIRLS%20PG!5e0!3m2!1sen!2sin!4v1748342337049!5m2!1sen!2sin"
+            width="100%"
+            height="500"
+            style="border:0;"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          />
+        </v-col>
+      </v-row>
+    </v-container>
   </v-app>
 </template>
 
@@ -202,11 +124,12 @@ export default {
     select: null,
     items: ['Item 1', 'Item 2', 'Item 3', 'Item 4'],
     checkbox: false,
+    snackbar: false,
   }),
   methods: {
     validate() {
       if (this.$refs.form.validate()) {
-        alert('Form is valid!');
+        this.snackbar = true;
       }
     },
     reset() {
@@ -220,3 +143,19 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.gif-img {
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.glassmorphic-form {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+</style>

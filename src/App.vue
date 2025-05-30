@@ -18,10 +18,10 @@
   
         <v-app-bar-nav-icon></v-app-bar-nav-icon>
         <v-tabs align-with-title>
-          <v-tab>Home</v-tab>
-          <v-tab>About</v-tab>
-          <v-tab>Contact</v-tab>
-          <v-tab>Portfolio</v-tab>
+          <v-tab to="/">Home</v-tab>
+          <v-tab to="/work">Work</v-tab>
+          <v-tab to="/contact">Contact</v-tab>
+        
         </v-tabs>
   
         <v-spacer></v-spacer>
@@ -43,7 +43,9 @@
         class="overflow-y-auto"
         max-height="600"
       >
-        <v-container style="height: 100000px;"></v-container>
+        <v-container style="height: 20000px; margin-top: 20%">
+          <router-view></router-view>
+        </v-container>
       </v-sheet>
     </v-card>
   </v-app>
@@ -57,5 +59,7 @@
     }),
   }
 </script>
+
+
 
 
