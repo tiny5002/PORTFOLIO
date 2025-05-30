@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <v-app id="Contactform">
     <v-container class="pa-5">
       <v-row>
@@ -102,6 +103,66 @@
       </v-row>
     </v-container>
   </v-app>
+=======
+  <v-container class="pa-4" max-width="600">
+    <v-form ref="form" v-model="valid" lazy-validation>
+      <v-text-field
+        v-model="name"
+        :rules="nameRules"
+        label="Name"
+        autocomplete="name"
+        required
+      />
+
+      <v-text-field
+        v-model="email"
+        :rules="emailRules"
+        label="E-mail"
+        autocomplete="email"
+        required
+      />
+
+      <v-text-field
+        v-model="contactnumber"
+        :counter="10"
+        :rules="contactnumberRules"
+        label="Contact"
+        autocomplete="contact"
+        required
+      />
+
+
+      <v-checkbox
+        v-model="checkbox"
+        :rules="[v => !!v || 'You must agree to continue!']"
+        label="Do you agree?"
+        required
+      />
+
+      <v-row class="mt-4" dense>
+        <v-col cols="12" sm="4">
+          <v-btn :disabled="!valid" color="success" block @click="validate">
+            Submit
+          </v-btn>
+        </v-col>
+        <v-col cols="12" sm="4">
+          <v-btn color="error" block @click="reset">
+            Reset
+          </v-btn>
+        </v-col>
+        <v-col cols="12" sm="4">
+          <v-btn color="warning" block @click="resetValidation">
+            Clear Validation
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-form>
+
+    <v-snackbar v-model="snackbar" :timeout="3000" color="success">
+      Form submitted successfully!
+    </v-snackbar>
+  </v-container>
+>>>>>>> 147bee449fe02369ba0a4d0d14ab3e31b80e97f8
 </template>
 
 <script>
@@ -112,7 +173,6 @@ export default {
     name: '',
     nameRules: [
       v => !!v || 'Name is required',
-      v => (v && v.length <= 10) || 'Name must be less than 10 characters',
     ],
     email: '',
     emailRules: [
@@ -121,10 +181,13 @@ export default {
         /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
         'E-mail must be valid',
     ],
+<<<<<<< HEAD
     select: null,
     items: ['Item 1', 'Item 2', 'Item 3', 'Item 4'],
     checkbox: false,
     snackbar: false,
+=======
+>>>>>>> 147bee449fe02369ba0a4d0d14ab3e31b80e97f8
   }),
   methods: {
     validate() {
@@ -143,6 +206,7 @@ export default {
   },
 };
 </script>
+<<<<<<< HEAD
 
 <style scoped>
 .gif-img {
@@ -159,3 +223,5 @@ export default {
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 </style>
+=======
+>>>>>>> 147bee449fe02369ba0a4d0d14ab3e31b80e97f8
