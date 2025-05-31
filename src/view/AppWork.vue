@@ -50,7 +50,7 @@
           <v-card>
             <v-card-title class="cyan lighten-1">
               <v-icon class="mr-4" dark size="42">mdi-email-outline</v-icon>
-              <h2 class="text-h4 white--text font-weight-light">Code of Deception</h2>
+              <h2 class="text-h4 white--text font-wight-light">Code of Deception</h2>
             </v-card-title>
             <v-container>
               <v-row>
